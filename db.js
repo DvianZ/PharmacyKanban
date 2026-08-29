@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-const pool = mysql.createPool({
+const dbConfig = process.env.MYSQL_URL || {
   host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
   user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
   password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
@@ -12,7 +12,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
   enableKeepAlive: true,
   keepAliveInitialDelay: 0
-});
+};
+
+const pool = mysql.createPool(dbConfig);
 
 // Test koneksi saat startup
 async function testConnection() {

@@ -13,16 +13,24 @@ async function setupDatabase() {
   console.log('🏥 SIMRS Kanban - Database Setup');
   console.log('================================\n');
 
-  // Koneksi tanpa database untuk membuat database
+  // Koneksi ke MySQL
   let conn;
   try {
-    conn = await mysql.createConnection({
+    const config = process.env.MYSQL_URL || {
       host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
       user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
       password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
       port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
       multipleStatements: true
-    });
+    };
+    
+    // Jika menggunakan URL, tambahkan multipleStatements
+    if (typeof config === 'string') {
+      conn = await mysql.createConnection(config + (config.includes('?') ? '&' : '?') + 'multipleStatements=true');
+    } else {
+      conn = await mysql.createConnection(config);
+    }
+    
     console.log('✅ Terhubung ke MySQL server');
   } catch (err) {
     console.error('❌ Tidak bisa terhubung ke MySQL:', err.message);
