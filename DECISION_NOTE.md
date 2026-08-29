@@ -1,5 +1,8 @@
 # 📄 1-Page Decision Note: Pharmacy Kanban
 
+🔗 **Live Prototype:** [https://pharmacykanban-production.up.railway.app/](https://pharmacykanban-production.up.railway.app/)  
+💻 **GitHub Repo:** [https://github.com/DvianZ/PharmacyKanban](https://github.com/DvianZ/PharmacyKanban)
+
 **Konteks & Latar Belakang (The Problem)**
 Sistem Informasi Manajemen Rumah Sakit (SIMRS) Khanza yang digunakan saat ini merupakan *monolith* yang memiliki keunggulan luar biasa dalam kelengkapan fitur dan stabilitas database. Namun, antarmukanya (UI/UX) seringkali sangat kompleks dan kaku. Hal ini menciptakan *bottleneck* (kemacetan) operasional di lapangan, khususnya di **Instalasi Farmasi**, di mana apoteker dipaksa melakukan *refresh* tabel terus-menerus dan kebingungan melacak status ratusan resep setiap harinya.
 
