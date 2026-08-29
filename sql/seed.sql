@@ -3,7 +3,7 @@
 -- Data realistis untuk demo dan pengembangan
 -- =====================================================
 
-USE simrs_kanban;
+-- Database ditentukan oleh environment/script setup
 
 -- =====================================================
 -- USERS (password: 'admin123' untuk semua user demo)
