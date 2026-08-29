@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pharmacy Kanban - Sistem Manajemen Apotek Modern">
+    <title>Pharmacy Kanban RS Indriati</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- LOGIN PAGE -->
+    <div id="login-page" class="login-page">
+        <div class="login-bg">
+            <div class="login-shape shape-1"></div>
+            <div class="login-shape shape-2"></div>
+            <div class="login-shape shape-3"></div>
+        </div>
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-logo">
+                        <i class='bx bxs-heart-circle'></i>
+                    </div>
+                    <h1>Pharmacy Kanban</h1>
+                    <p>Sistem Manajemen Apotek RS Indriati</p>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="login-username"><i class='bx bxs-user'></i> Username</label>
+                        <input type="text" id="login-username" placeholder="Masukkan username" required autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password"><i class='bx bxs-lock-alt'></i> Password</label>
+                        <input type="password" id="login-password" placeholder="Masukkan password" required autocomplete="current-password">
+                    </div>
+                    <div id="login-error" class="login-error" style="display:none;"></div>
+                    <button type="submit" class="btn btn-primary btn-login" id="login-btn">
+                        <i class='bx bx-log-in'></i> Masuk
+                    </button>
+                </form>
+                <div class="login-footer">
+                    <p>Demo: <strong>admin</strong> / <strong>admin123</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP LAYOUT -->
+    <div id="app-layout" class="app-layout" style="display:none;">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class='bx bxs-heart-circle'></i>
+                    <span>Pharmacy Kanban</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle sidebar">
+                    <i class='bx bx-menu'></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <div class="nav-section" data-roles="admin,dokter,perawat">
+                    <span class="nav-section-title">PELAYANAN KLINIS</span>
+                    <a href="#/rawat-jalan" class="nav-link" data-page="rawat-jalan">
+                        <i class='bx bxs-first-aid'></i>
+                        <span>Input Resep (Dokter)</span>
+                    </a>
+                </div>
+                <div class="nav-section" data-roles="admin,farmasi">
+                    <span class="nav-section-title">FARMASI</span>
+                    <a href="#/farmasi" class="nav-link" data-page="farmasi">
+                        <i class='bx bxs-capsule'></i>
+                        <span>Farmasi (Kanban)</span>
+                    </a>
+                    <a href="#/stok-obat" class="nav-link" data-page="stok-obat">
+                        <i class='bx bxs-package'></i>
+                        <span>Stok Obat</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info" id="user-info">
+                    <div class="user-avatar"><i class='bx bxs-user-circle'></i></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">-</span>
+                        <span class="user-role" id="user-role">-</span>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btn-logout" title="Keluar">
+                    <i class='bx bx-log-out'></i>
+                    <span>Keluar</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <header class="topbar" id="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-toggle" id="mobile-toggle">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <h2 class="page-title" id="page-title">Dashboard</h2>
+                </div>
+                <div class="topbar-right">
+                    <div class="topbar-clock" id="topbar-clock"></div>
+                    <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+            </header>
+            <div class="content-area" id="content-area">
+                <!-- Dynamic content rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL CONTAINER -->
+    <div class="modal-overlay" id="modal-overlay" style="display:none;">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Modal</h3>
+                <button class="modal-close" id="modal-close"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
