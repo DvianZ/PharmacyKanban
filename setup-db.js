@@ -55,8 +55,16 @@ async function setupDatabase() {
     await conn.query(`USE \`${dbName}\`;`);
     
     const schema = fs.readFileSync(path.join(__dirname, 'sql', 'schema.sql'), 'utf8');
-    await conn.query(schema);
-    console.log('✅ Schema berhasil dijalankan');
+    try {
+      await conn.query(schema);
+      console.log('✅ Schema berhasil dijalankan');
+    } catch (schemaErr) {
+      if (schemaErr.code === 'ER_DUP_KEYNAME' || schemaErr.code === 'ER_TABLE_EXISTS_ERROR') {
+        console.log('⚠️ Schema sudah ada, melanjutkan ke seeding...');
+      } else {
+        throw schemaErr;
+      }
+    }
 
     // 2. Generate password hash yang benar untuk semua user
     console.log('\n🔐 Generating password hashes...');
@@ -72,25 +80,22 @@ async function setupDatabase() {
     console.log('✅ Data dummy berhasil dimasukkan');
 
     console.log('\n================================');
-    console.log('🎉 Setup selesai! Database siap digunakan.');
     console.log('\n📋 Akun Demo:');
     console.log('   Admin      : admin / admin123');
     console.log('   Dokter     : dr.andi / admin123');
     console.log('   Dokter     : dr.sari / admin123');
     console.log('   Dokter     : dr.budi / admin123');
-    console.log('   Farmasi    : apt.rina / admin123');
-    console.log('   Kasir      : kasir01 / admin123');
-    console.log('   Pendaftaran: daftar01 / admin123');
-    console.log('   Perawat    : perawat01 / admin123');
-    console.log('\n🚀 Jalankan server: npm start');
+    console.log('   Apoteker   : apt.rina / admin123');
+    console.log('================================\n');
 
-  } catch (err) {
-    console.error('❌ Error saat setup:', err.message);
-    if (err.message.includes('Duplicate')) {
-      console.log('\n⚠️  Data sudah ada. Jika ingin reset, hapus database dulu:');
-      console.log('   mysql -u root -e "DROP DATABASE simrs_kanban;"');
-      console.log('   Lalu jalankan ulang: npm run setup-db');
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error saat setup:', error.message);
+    if (error.code === 'ER_DUP_ENTRY') {
+      console.log('⚠️  Data dummy sudah ada. Setup selesai!');
+      process.exit(0);
     }
+    process.exit(1);
   } finally {
     await conn.end();
   }
