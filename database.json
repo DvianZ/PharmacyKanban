@@ -1,0 +1,20 @@
+[
+  {
+    "id": "RSP-001",
+    "pasien": "Andi Supriadi",
+    "obat": "Paracetamol, Vitamin C",
+    "status": "antre"
+  },
+  {
+    "id": "RSP-002",
+    "pasien": "Budi Santoso",
+    "obat": "Amoxicillin 500mg",
+    "status": "diracik"
+  },
+  {
+    "id": "RSP-003",
+    "pasien": "Citra Lestari",
+    "obat": "Sirup Obat Batuk",
+    "status": "antre"
+  }
+]
