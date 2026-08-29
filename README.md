@@ -66,7 +66,7 @@ Kami menghadirkan **Pharmacy Kanban**: Sebuah antarmuka web modern yang sangat s
    Aplikasi akan berjalan di `http://localhost:3000`.
 
 4. **Pengujian Simulasi (Demo Workflow)**
-   - Login menggunakan kredensial (misal: `admin` / `admin123`).
+   - Login menggunakan kredensial admin (`admin` / `admin123`).
    - Bertindak sebagai **Dokter**: Buka menu **Input Resep (Dokter)**, klik tombol **SOAP** pada pasien, pilih tab **Resep Obat**, input obat dan klik Kirim Resep.
    - Bertindak sebagai **Apoteker**: Buka menu **Farmasi (Kanban)**. Temukan resep yang baru dikirim di kolom "Resep Masuk". Klik kartu tersebut, cetak etiket, dan *drag* kartu ke kolom "Sedang Diracik". 
 
