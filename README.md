@@ -1,6 +1,6 @@
 # 🏥 Pharmacy Kanban (SIMRS Khanza Modernization)
 
-**Hackathon Hilirisasi 2026 Submission**
+**Hackathon Hilirisasi Vol. 5 Submission**
 
 ## 💡 Latar Belakang (The Problem)
 Sistem Informasi Manajemen Rumah Sakit (SIMRS) tradisional seperti SIMRS Khanza memiliki fondasi database yang sangat kuat dan lengkap. Namun, dari segi *User Experience* (UX), sistem *legacy* seringkali lambat, kaku, dan membanjiri pengguna dengan ratusan menu yang tidak relevan dengan tugas harian mereka.
