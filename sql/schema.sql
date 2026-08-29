@@ -4,11 +4,7 @@
 -- Kompatibel MySQL 5.7+ / MariaDB 10.3+
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS simrs_kanban
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE simrs_kanban;
+-- Database disetup dari environment (bisa simrs_kanban atau railway db)
 
 -- =====================================================
 -- 1. USERS & AUTHENTICATION

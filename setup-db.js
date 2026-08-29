@@ -17,10 +17,10 @@ async function setupDatabase() {
   let conn;
   try {
     conn = await mysql.createConnection({
-      host: process.env.DB_HOST || 'localhost',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD || '',
-      port: process.env.DB_PORT || 3306,
+      host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
+      user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
+      password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
+      port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
       multipleStatements: true
     });
     console.log('✅ Terhubung ke MySQL server');
@@ -36,6 +36,16 @@ async function setupDatabase() {
   try {
     // 1. Jalankan schema.sql
     console.log('\n📦 Membuat database dan tabel...');
+    const dbName = process.env.MYSQLDATABASE || process.env.DB_NAME || 'simrs_kanban';
+    
+    try {
+      await conn.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
+    } catch (err) {
+      console.log('⚠️ Melewati pembuatan DB (Biasanya di Cloud/Railway ini sudah otomatis).');
+    }
+    
+    await conn.query(`USE \`${dbName}\`;`);
+    
     const schema = fs.readFileSync(path.join(__dirname, 'sql', 'schema.sql'), 'utf8');
     await conn.query(schema);
     console.log('✅ Schema berhasil dijalankan');
